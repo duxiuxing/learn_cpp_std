@@ -28,3 +28,8 @@ source/gtest_static/vs2015/Debug/*
 source/gtest_static/vs2015/Release/*
 source/gtest_static/vs2015/x64/Debug/*
 source/gtest_static/vs2015/x64/Release/*
+
+source/stl/vs2015/Debug/*
+source/stl/vs2015/Release/*
+source/stl/vs2015/x64/Debug/*
+source/stl/vs2015/x64/Release/*

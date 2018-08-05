@@ -1,3 +1,5 @@
+*.ipch
+*.sdf
 *.VC.db
 *.VC.opendb
 
@@ -22,15 +24,15 @@ x64/Release/*
 !x64/Release/cutest.lib
 !x64/Release/MfcTestRunnerApp.exe
 
-source/basic_types/vs2015/Debug/*
-source/basic_types/vs2015/Release/*
-source/basic_types/vs2015/x64/Debug/*
-source/basic_types/vs2015/x64/Release/*
+source/basic_types/*/Debug/*
+source/basic_types/*/Release/*
+source/basic_types/*/x64/Debug/*
+source/basic_types/*/x64/Release/*
 
-source/gtest_static/vs2015/Debug/*
-source/gtest_static/vs2015/Release/*
-source/gtest_static/vs2015/x64/Debug/*
-source/gtest_static/vs2015/x64/Release/*
+source/gtest_static/*/Debug/*
+source/gtest_static/*/Release/*
+source/gtest_static/*/x64/Debug/*
+source/gtest_static/*/x64/Release/*
 
 source/stl/vs2015/Debug/*
 source/stl/vs2015/Release/*

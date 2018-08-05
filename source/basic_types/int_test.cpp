@@ -63,23 +63,6 @@ TEST(int_test, int8_to_string) {
         EXPECT_STREQ(expect_str, actual_str);
     }
 
-    // 使用std::to_string()
-#if _MSC_VER >= 1900 // vs2015 or above    
-    {
-        std::string actual_str = std::to_string(min_int);
-        actual_str.append(" ~ ");
-        actual_str.append(std::to_string(max_int));
-        EXPECT_STREQ(expect_str, actual_str.c_str());
-    }
-#elif _MSC_VER >= 1600 // vs2010 or above  
-    {
-        std::string actual_str = std::to_string((int64_t)min_int);
-        actual_str.append(" ~ ");
-        actual_str.append(std::to_string((int64_t)max_int));
-        EXPECT_STREQ(expect_str, actual_str.c_str());
-    }
-#endif
-
     // 使用std::stringstream时，如果不带显式类型转换会被当做char处理
     {
         std::stringstream ss;
@@ -95,6 +78,23 @@ TEST(int_test, int8_to_string) {
         ss << (int32_t)min_int << " ~ " << (int32_t)max_int;
         EXPECT_STREQ(expect_str, ss.str().c_str());
     }
+
+#ifdef _STDINT
+    // 使用std::to_string()
+    {
+#if _MSC_VER <= 1600 // vs2010 or previous
+        std::string actual_str = std::to_string((int64_t)min_int);
+        actual_str.append(" ~ ");
+        actual_str.append(std::to_string((int64_t)max_int));
+        EXPECT_STREQ(expect_str, actual_str.c_str());
+#else
+        std::string actual_str = std::to_string(min_int);
+        actual_str.append(" ~ ");
+        actual_str.append(std::to_string(max_int));
+        EXPECT_STREQ(expect_str, actual_str.c_str());
+#endif
+    }
+#endif // #ifdef _STDINT
 }
 
 /*
@@ -127,29 +127,29 @@ TEST(int_test, int16_to_string) {
         EXPECT_STREQ(expect_str, actual_str);
     }
 
-    // 使用std::to_string()
-#if _MSC_VER >= 1900 // vs2015 or above
-    {
-        std::string actual_str = std::to_string(min_int);
-        actual_str.append(" ~ ");
-        actual_str.append(std::to_string(max_int));
-        EXPECT_STREQ(expect_str, actual_str.c_str());
-    }
-#elif _MSC_VER >= 1600 // vs2010 or above
-    {
-        std::string actual_str = std::to_string((int64_t)min_int);
-        actual_str.append(" ~ ");
-        actual_str.append(std::to_string((int64_t)max_int));
-        EXPECT_STREQ(expect_str, actual_str.c_str());
-    }
-#endif
-
     // 使用std::stringstream
     {
         std::stringstream ss;
         ss << min_int << " ~ " << max_int;
         EXPECT_STREQ(expect_str, ss.str().c_str());
     }
+
+#ifdef _STDINT
+    // 使用std::to_string()
+    {
+#if _MSC_VER <= 1600 // vs2010 or previous
+        std::string actual_str = std::to_string((int64_t)min_int);
+        actual_str.append(" ~ ");
+        actual_str.append(std::to_string((int64_t)max_int));
+        EXPECT_STREQ(expect_str, actual_str.c_str());
+#else
+        std::string actual_str = std::to_string(min_int);
+        actual_str.append(" ~ ");
+        actual_str.append(std::to_string(max_int));
+        EXPECT_STREQ(expect_str, actual_str.c_str());
+#endif
+    }
+#endif // #ifdef _STDINT
 }
 
 /*
@@ -182,29 +182,29 @@ TEST(int_test, int32_to_string) {
         EXPECT_STREQ(expect_str, actual_str);
     }
 
-    // 使用std::to_string()
-#if _MSC_VER >= 1900 // vs2015 or above
-    {
-        std::string actual_str = std::to_string(min_int);
-        actual_str.append(" ~ ");
-        actual_str.append(std::to_string(max_int));
-        EXPECT_STREQ(expect_str, actual_str.c_str());
-    }
-#elif _MSC_VER >= 1600 // vs2010 or above 
-    {
-        std::string actual_str = std::to_string((int64_t)min_int);
-        actual_str.append(" ~ ");
-        actual_str.append(std::to_string((int64_t)max_int));
-        EXPECT_STREQ(expect_str, actual_str.c_str());
-    }
-#endif
-
     // 使用std::stringstream
     {
         std::stringstream ss;
         ss << min_int << " ~ " << max_int;
         EXPECT_STREQ(expect_str, ss.str().c_str());
     }
+
+#ifdef _STDINT
+    // 使用std::to_string()
+    {
+#if _MSC_VER <= 1600 // vs2010 or previous
+        std::string actual_str = std::to_string((int64_t)min_int);
+        actual_str.append(" ~ ");
+        actual_str.append(std::to_string((int64_t)max_int));
+        EXPECT_STREQ(expect_str, actual_str.c_str());
+#else
+        std::string actual_str = std::to_string(min_int);
+        actual_str.append(" ~ ");
+        actual_str.append(std::to_string(max_int));
+        EXPECT_STREQ(expect_str, actual_str.c_str());
+#endif
+    }
+#endif // #ifdef _STDINT
 }
 
 /*
@@ -236,14 +236,6 @@ TEST(int_test, string_to_int32) {
         EXPECT_EQ(max_int, actual_int);
     }
 
-#if _MSC_VER >= 1600 // vs2010 or above
-    // 使用std::stoi()
-    {
-        EXPECT_EQ(min_int, std::stoi(min_str));
-        EXPECT_EQ(max_int, std::stoi(max_str));
-    }
-#endif
-
     // 使用std::istringstream
     {
         int_type actual_int = 0;
@@ -262,6 +254,18 @@ TEST(int_test, string_to_int32) {
             EXPECT_EQ(max_int, actual_int);
         }
     }
+
+#ifdef _STDINT
+#if _MSC_VER <= 1600 // vs2010 or previous
+    // not support std::stoi()
+#else
+    // 使用std::stoi()
+    {
+        EXPECT_EQ(min_int, std::stoi(min_str));
+        EXPECT_EQ(max_int, std::stoi(max_str));
+    }
+#endif
+#endif // #ifdef _STDINT
 }
 
 /*
@@ -294,7 +298,14 @@ TEST(int_test, int64_to_string) {
         EXPECT_STREQ(expect_str, actual_str);
     }
 
-#if _MSC_VER >= 1600 // vs2010 or above
+    // 使用std::stringstream
+    {
+        std::stringstream ss;
+        ss << min_int << " ~ " << max_int;
+        EXPECT_STREQ(expect_str, ss.str().c_str());
+    }
+
+#ifdef _STDINT
     // 使用std::to_string()
     {
         std::string actual_str = std::to_string(min_int);
@@ -302,14 +313,7 @@ TEST(int_test, int64_to_string) {
         actual_str.append(std::to_string(max_int));
         EXPECT_STREQ(expect_str, actual_str.c_str());
     }
-#endif
-
-    // 使用std::stringstream
-    {
-        std::stringstream ss;
-        ss << min_int << " ~ " << max_int;
-        EXPECT_STREQ(expect_str, ss.str().c_str());
-    }
+#endif // #ifdef _STDINT
 }
 
 /*
@@ -341,14 +345,6 @@ TEST(int_test, string_to_int64) {
         EXPECT_EQ(max_int, actual_int);
     }
 
-#if _MSC_VER >= 1600 // vs2010 or above
-    // 使用std::stoll()
-    {
-        EXPECT_EQ(min_int, std::stoll(min_str));
-        EXPECT_EQ(max_int, std::stoll(max_str));
-    }
-#endif
-
     // 使用std::istringstream
     {
         int_type actual_int = 0;
@@ -367,6 +363,14 @@ TEST(int_test, string_to_int64) {
             EXPECT_EQ(max_int, actual_int);
         }
     }
+
+#ifdef _STDINT
+    // 使用std::stoll()
+    {
+        EXPECT_EQ(min_int, std::stoll(min_str));
+        EXPECT_EQ(max_int, std::stoll(max_str));
+    }
+#endif // #ifdef _STDINT
 }
 
 /*
@@ -399,23 +403,6 @@ TEST(int_test, uint8_to_string) {
         EXPECT_STREQ(expect_str, actual_str);
     }
 
-    // 使用std::to_string()
-#if _MSC_VER >= 1900 // vs2015 or above
-    {
-        std::string actual_str = std::to_string(min_int);
-        actual_str.append(" ~ ");
-        actual_str.append(std::to_string(max_int));
-        EXPECT_STREQ(expect_str, actual_str.c_str());
-    }
-#elif _MSC_VER >= 1600 // vs2010 or above 
-    {
-        std::string actual_str = std::to_string((uint64_t)min_int);
-        actual_str.append(" ~ ");
-        actual_str.append(std::to_string((uint64_t)max_int));
-        EXPECT_STREQ(expect_str, actual_str.c_str());
-    }
-#endif
-
     // 使用std::stringstream without explicit type conversions
     {
         std::stringstream ss;
@@ -431,6 +418,23 @@ TEST(int_test, uint8_to_string) {
         ss << (uint32_t)min_int << " ~ " << (uint32_t)max_int;
         EXPECT_STREQ(expect_str, ss.str().c_str());
     }
+
+#ifdef _STDINT
+    // 使用std::to_string()
+    {
+#if _MSC_VER <= 1600 // vs2010 or previous
+        std::string actual_str = std::to_string((uint64_t)min_int);
+        actual_str.append(" ~ ");
+        actual_str.append(std::to_string((uint64_t)max_int));
+        EXPECT_STREQ(expect_str, actual_str.c_str());
+#else
+        std::string actual_str = std::to_string(min_int);
+        actual_str.append(" ~ ");
+        actual_str.append(std::to_string(max_int));
+        EXPECT_STREQ(expect_str, actual_str.c_str());
+#endif
+    }
+#endif // #ifdef _STDINT
 }
 
 /*
@@ -463,29 +467,29 @@ TEST(int_test, uint16_to_string) {
         EXPECT_STREQ(expect_str, actual_str);
     }
 
-    // 使用std::to_string()
-#if _MSC_VER >= 1900 // vs2015 or above    
-    {
-        std::string actual_str = std::to_string(min_int);
-        actual_str.append(" ~ ");
-        actual_str.append(std::to_string(max_int));
-        EXPECT_STREQ(expect_str, actual_str.c_str());
-    }
-#elif _MSC_VER >= 1600 // vs2010 or above 
-    {
-        std::string actual_str = std::to_string((uint64_t)min_int);
-        actual_str.append(" ~ ");
-        actual_str.append(std::to_string((uint64_t)max_int));
-        EXPECT_STREQ(expect_str, actual_str.c_str());
-    }
-#endif
-
     // 使用std::stringstream
     {
         std::stringstream ss;
         ss << min_int << " ~ " << max_int;
         EXPECT_STREQ(expect_str, ss.str().c_str());
     }
+
+#ifdef _STDINT
+    // 使用std::to_string()
+    {
+#if _MSC_VER <= 1600 // vs2010 or previous
+        std::string actual_str = std::to_string((uint64_t)min_int);
+        actual_str.append(" ~ ");
+        actual_str.append(std::to_string((uint64_t)max_int));
+        EXPECT_STREQ(expect_str, actual_str.c_str());
+#else
+        std::string actual_str = std::to_string(min_int);
+        actual_str.append(" ~ ");
+        actual_str.append(std::to_string(max_int));
+        EXPECT_STREQ(expect_str, actual_str.c_str());
+#endif
+    }
+#endif // #ifdef _STDINT
 }
 
 /*
@@ -526,29 +530,29 @@ TEST(int_test, uint32_to_string) {
         EXPECT_STREQ(expect_str, actual_str);
     }
 
-    // 使用std::to_string()
-#if _MSC_VER >= 1900 // vs2015 or above
-    {
-        std::string actual_str = std::to_string(min_int);
-        actual_str.append(" ~ ");
-        actual_str.append(std::to_string(max_int));
-        EXPECT_STREQ(expect_str, actual_str.c_str());
-    }
-#elif _MSC_VER >= 1600 // vs2010 or above 
-    {
-        std::string actual_str = std::to_string((uint64_t)min_int);
-        actual_str.append(" ~ ");
-        actual_str.append(std::to_string((uint64_t)max_int));
-        EXPECT_STREQ(expect_str, actual_str.c_str());
-    }
-#endif
-
     // 使用std::stringstream
     {
         std::stringstream ss;
         ss << min_int << " ~ " << max_int;
         EXPECT_STREQ(expect_str, ss.str().c_str());
     }
+
+#ifdef _STDINT
+    // 使用std::to_string()
+    {
+#if _MSC_VER <= 1600 // vs2010 or previous
+        std::string actual_str = std::to_string((uint64_t)min_int);
+        actual_str.append(" ~ ");
+        actual_str.append(std::to_string((uint64_t)max_int));
+        EXPECT_STREQ(expect_str, actual_str.c_str());
+#else
+        std::string actual_str = std::to_string(min_int);
+        actual_str.append(" ~ ");
+        actual_str.append(std::to_string(max_int));
+        EXPECT_STREQ(expect_str, actual_str.c_str());
+#endif
+    }
+#endif // #ifdef _STDINT
 }
 
 /*
@@ -580,14 +584,6 @@ TEST(int_test, string_to_uint32) {
         EXPECT_EQ(max_int, actual_int);
     }
 
-#if _MSC_VER >= 1600 // vs2010 or above
-    // 使用std::stoul()
-    {
-        EXPECT_EQ(min_int, std::stoul(min_str));
-        EXPECT_EQ(max_int, std::stoul(max_str));
-    }
-#endif
-
     // 使用std::istringstream
     {
         int_type actual_int = 0;
@@ -606,6 +602,14 @@ TEST(int_test, string_to_uint32) {
             EXPECT_EQ(max_int, actual_int);
         }
     }
+
+#ifdef _STDINT
+    // 使用std::stoul()
+    {
+        EXPECT_EQ(min_int, std::stoul(min_str));
+        EXPECT_EQ(max_int, std::stoul(max_str));
+    }
+#endif // #ifdef _STDINT
 }
 
 /*
@@ -638,7 +642,14 @@ TEST(int_test, uint64_to_string) {
         EXPECT_STREQ(expect_str, actual_str);
     }
 
-#if _MSC_VER >= 1600 // vs2010 or above 
+    // 使用std::stringstream
+    {
+        std::stringstream ss;
+        ss << min_int << " ~ " << max_int;
+        EXPECT_STREQ(expect_str, ss.str().c_str());
+    }
+
+#ifdef _STDINT
     // 使用std::to_string()
     {
         std::string actual_str = std::to_string(min_int);
@@ -646,14 +657,7 @@ TEST(int_test, uint64_to_string) {
         actual_str.append(std::to_string(max_int));
         EXPECT_STREQ(expect_str, actual_str.c_str());
     }
-#endif
-
-    // 使用std::stringstream
-    {
-        std::stringstream ss;
-        ss << min_int << " ~ " << max_int;
-        EXPECT_STREQ(expect_str, ss.str().c_str());
-    }
+#endif // #ifdef _STDINT
 }
 
 TEST(int_test, string_to_uint64) {
@@ -681,14 +685,6 @@ TEST(int_test, string_to_uint64) {
         EXPECT_EQ(max_int, actual_int);
     }
 
-#if _MSC_VER >= 1600 // vs2010 or above
-    // 使用std::stoull()
-    {
-        EXPECT_EQ(min_int, std::stoull(min_str));
-        EXPECT_EQ(max_int, std::stoull(max_str));
-    }
-#endif
-
     // 使用std::istringstream
     {
         int_type actual_int = 0;
@@ -707,4 +703,12 @@ TEST(int_test, string_to_uint64) {
             EXPECT_EQ(max_int, actual_int);
         }
     }
+
+#ifdef _STDINT
+    // 使用std::stoull()
+    {
+        EXPECT_EQ(min_int, std::stoull(min_str));
+        EXPECT_EQ(max_int, std::stoull(max_str));
+    }
+#endif // #ifdef _STDINT
 }

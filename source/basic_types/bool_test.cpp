@@ -34,31 +34,31 @@ TEST(bool_test, convert_to_string) {
         EXPECT_STREQ(expect_str, actual_str);
     }
 
-    // 使用std::to_string()
-#if _MSC_VER >= 1900 // vs2015 or above    
-    {
-        std::string actual_str = "true=";
-        actual_str.append(std::to_string(true));
-        actual_str.append(", false=");
-        actual_str.append(std::to_string(false));
-        EXPECT_STREQ(expect_str, actual_str.c_str());
-    }
-#elif _MSC_VER >= 1600 // vs2010 or above
-    {
-        std::string actual_str = "true=";
-        actual_str.append(std::to_string((uint64_t)true));
-        actual_str.append(", false=");
-        actual_str.append(std::to_string((uint64_t)false));
-        EXPECT_STREQ(expect_str, actual_str.c_str());
-    }
-#endif
-
     // 使用std::stringstream
     {
         std::stringstream ss;
         ss << "true=" << true << ", false=" << false;
         EXPECT_STREQ(expect_str, ss.str().c_str());
     }
+
+#ifdef _STDINT
+    // 使用std::to_string()
+    {
+#if _MSC_VER <= 1600 // vs2010 or previous
+        std::string actual_str = "true=";
+        actual_str.append(std::to_string((uint64_t)true));
+        actual_str.append(", false=");
+        actual_str.append(std::to_string((uint64_t)false));
+        EXPECT_STREQ(expect_str, actual_str.c_str());
+#else
+        std::string actual_str = "true=";
+        actual_str.append(std::to_string(true));
+        actual_str.append(", false=");
+        actual_str.append(std::to_string(false));
+        EXPECT_STREQ(expect_str, actual_str.c_str());
+#endif
+    }
+#endif // #ifdef _STDINT
 }
 
 /*
@@ -87,29 +87,29 @@ TEST(bool_test, convert_to_wstring) {
         EXPECT_STREQ(expect_str, actual_str);
     }
 
-    // 使用std::to_wstring()
-#if _MSC_VER >= 1900 // vs2015 or above
-    {
-        std::wstring actual_str = L"true=";
-        actual_str.append(std::to_wstring(true));
-        actual_str.append(L", false=");
-        actual_str.append(std::to_wstring(false));
-        EXPECT_STREQ(expect_str, actual_str.c_str());
-    }
-#elif _MSC_VER >= 1600 // vs2010 or above  
-    {
-        std::wstring actual_str = L"true=";
-        actual_str.append(std::to_wstring((_ULonglong)true));
-        actual_str.append(L", false=");
-        actual_str.append(std::to_wstring((_ULonglong)false));
-        EXPECT_STREQ(expect_str, actual_str.c_str());
-    }
-#endif
-
     // 使用wstringstream
     {
         std::wstringstream ss;
         ss << L"true=" << true << L", false=" << false;
         EXPECT_STREQ(expect_str, ss.str().c_str());
     }
+
+#ifdef _STDINT
+    // 使用std::to_wstring()
+    {
+#if _MSC_VER <= 1600 // vs2010 or previous
+        std::wstring actual_str = L"true=";
+        actual_str.append(std::to_wstring((uint64_t)true));
+        actual_str.append(L", false=");
+        actual_str.append(std::to_wstring((uint64_t)false));
+        EXPECT_STREQ(expect_str, actual_str.c_str());
+#else
+        std::wstring actual_str = L"true=";
+        actual_str.append(std::to_wstring(true));
+        actual_str.append(L", false=");
+        actual_str.append(std::to_wstring(false));
+        EXPECT_STREQ(expect_str, actual_str.c_str());
+#endif
+    }
+#endif // #ifdef _STDINT
 }

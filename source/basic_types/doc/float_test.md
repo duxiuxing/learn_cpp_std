@@ -1,6 +1,6 @@
-(7)double/float->CString
+ï»¿(7)double/float->CString
    double data;
-   CString.Format("%.2f",data); //±£Áô2Î»Ð¡Êý
+   CString.Format("%.2f",data); //ä¿ç•™2ä½å°æ•°
 
 (8)CString->double
    CString s="123.12";

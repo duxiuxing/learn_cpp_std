@@ -26,5 +26,8 @@
     <ClCompile Include="..\int_test.cpp">
       <Filter>Test</Filter>
     </ClCompile>
+    <ClCompile Include="..\float_test.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

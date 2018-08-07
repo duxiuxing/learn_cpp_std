@@ -163,6 +163,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\bool_test.cpp" />
+    <ClCompile Include="..\float_test.cpp" />
     <ClCompile Include="..\int_test.cpp" />
     <ClCompile Include="..\stdafx.cpp" />
   </ItemGroup>

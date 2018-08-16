@@ -20,5 +20,8 @@
     <ClCompile Include="..\stdafx.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\third_party\googletest\src\gtest_main.cc">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

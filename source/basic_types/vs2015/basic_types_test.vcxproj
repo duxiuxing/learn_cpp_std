@@ -162,6 +162,7 @@
     <ClInclude Include="..\targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\third_party\googletest\src\gtest_main.cc" />
     <ClCompile Include="..\bool_test.cpp" />
     <ClCompile Include="..\float_test.cpp" />
     <ClCompile Include="..\int_test.cpp" />

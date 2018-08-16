@@ -162,6 +162,7 @@
     <ClInclude Include="..\targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\third_party\googletest\src\gtest_main.cc" />
     <ClCompile Include="..\stdafx.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

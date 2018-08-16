@@ -1,12 +1,7 @@
 ﻿#include <gtest/gtest.h>
 #include <sstream>
 
-#ifndef _STDINT
-    #define UINT8_MAX _UI8_MAX
-    typedef unsigned long long uint64_t;
-#endif
-
-#define BUFFER_MAX UINT8_MAX
+#define BUFFER_MAX 256
 
 /*
     Description: 布尔值转字符串

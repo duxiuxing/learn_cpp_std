@@ -3,9 +3,6 @@
 #include <stdlib.h>
 
 #define BUFFER_MAX UINT8_MAX
-float32_t
-float64_t
-float_t
 //
 ///*
 //输入：float32和字符串互转。

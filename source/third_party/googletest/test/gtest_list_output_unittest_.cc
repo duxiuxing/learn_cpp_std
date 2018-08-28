@@ -1,4 +1,4 @@
-// Copyright 2015, Google Inc.
+// Copyright 2018, Google Inc.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -27,13 +27,25 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
-// Injection point for custom user configurations. See README for details
+// Author: david.schuldenfrei@gmail.com (David Schuldenfrei)
+
+// Unit test for Google Test's --gtest_list_tests and --gtest_output flag.
 //
-// ** Custom implementation starts here **
+// A user can ask Google Test to list all tests that will run,
+// and have the output saved in a Json/Xml file.
+// The tests will not be run after listing.
+//
+// This program will be invoked from a Python unit test.
+// Don't run it directly.
 
-// GOOGLETEST_CM0002 DO NOT DELETE
+#include "gtest/gtest.h"
 
-#ifndef GMOCK_INCLUDE_GMOCK_INTERNAL_CUSTOM_GMOCK_PORT_H_
-#define GMOCK_INCLUDE_GMOCK_INTERNAL_CUSTOM_GMOCK_PORT_H_
+TEST(FooTest, Test1) {}
 
-#endif  // GMOCK_INCLUDE_GMOCK_INTERNAL_CUSTOM_GMOCK_PORT_H_
+TEST(FooTest, Test2) {}
+
+int main(int argc, char **argv) {
+  ::testing::InitGoogleTest(&argc, argv);
+
+  return RUN_ALL_TESTS();
+}

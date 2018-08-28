@@ -6,10 +6,8 @@ using namespace std;
 #define EXPECT_VECTOR_EQ(expect_array, actual_vector) \
     { \
         ASSERT_EQ(sizeof(expect_array) / sizeof(expect_array[0]), actual_vector.size()); \
-        int index = 0; \
-        for (auto& elem : actual_vector) { \
-            EXPECT_EQ(expect_array[index], elem) << "index = " << index; \
-            ++index; \
+        for (unsigned int index = 0; index < actual_vector.size(); ++index) { \
+            EXPECT_EQ(expect_array[index], actual_vector[index]) << "index = " << index; \
         } \
     }
 
@@ -50,6 +48,7 @@ TEST(vector_test, assign) {
         EXPECT_VECTOR_EQ(array, v3);
     }
 
+#if GTEST_LANG_CXX11
     {
         // void assign(initializer_list<Type> IList);
         v3.assign({ 10, 20, 30, 40, 50 });
@@ -57,6 +56,7 @@ TEST(vector_test, assign) {
         int array[] = { 10, 20, 30, 40, 50 };
         EXPECT_VECTOR_EQ(array, v3);
     }
+#endif
 }
 
 /*
@@ -204,12 +204,14 @@ TEST(vector_test, traverse) {
         ++index;
     }
 
+#if GTEST_LANG_CXX11
     // C++11
     index = 0;
     for (auto& elem : v) {
         EXPECT_EQ(array[index], elem);
         ++index;
     }
+#endif
 }
 
 // 3. 在任意位置插入vector元素

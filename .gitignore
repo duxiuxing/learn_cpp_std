@@ -1,8 +1,14 @@
+*.embed.manifest
+*.idb
+*.intermediate.manifest
 *.ipch
+*.res
 *.sdf
 *.VC.db
 *.VC.opendb
 
+BuildLog.htm
+mt.dep
 Debug/*
 Release/*
 x64/Debug/*

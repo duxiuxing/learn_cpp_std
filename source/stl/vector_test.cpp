@@ -3,12 +3,22 @@
 #include <vector>
 using namespace std;
 
+#define EXPECT_VECTOR_EQ(expect_array, actual_vector) \
+    { \
+        ASSERT_EQ(sizeof(expect_array) / sizeof(expect_array[0]), actual_vector.size()); \
+        int index = 0; \
+        for (auto& elem : actual_vector) { \
+            EXPECT_EQ(expect_array[index], elem) << "index = " << index; \
+            ++index; \
+        } \
+    }
+
 /*
     TestedMethod: vector::assign()
     Description: Erases a vector and copies the specified elements to the empty vector.
 */
 TEST(vector_test, assign) {
-    vector<int> v1, v2, v3;
+    vector<int> v1;
 
     {
         v1.push_back(10);
@@ -18,34 +28,26 @@ TEST(vector_test, assign) {
         v1.push_back(50);
 
         int array[] = { 10, 20, 30, 40, 50 };
-        int index = 0;
-        for (auto& v : v1) {
-            EXPECT_EQ(array[index], v);
-            ++index;
-        }
+        EXPECT_VECTOR_EQ(array, v1);
     }
 
     {
         // template <class InputIterator>
         // void assign(InputIterator First, InputIterator Last);
+        vector<int> v2;
         v2.assign(v1.begin(), v1.end());
 
         int array[] = { 10, 20, 30, 40, 50 };
-        int index = 0;
-        for (auto& v : v2) {
-            EXPECT_EQ(array[index], v);
-            ++index;
-        }
+        EXPECT_VECTOR_EQ(array, v2);
     }
 
+    vector<int> v3;
     {
         // void assign(size_type Count, const Type& Val);
         v3.assign(7, 4);
 
-        EXPECT_EQ(7, v3.size());
-        for (auto& v : v3) {
-            EXPECT_EQ(4, v);
-        }
+        int array[] = { 4, 4, 4, 4, 4, 4, 4 };
+        EXPECT_VECTOR_EQ(array, v3);
     }
 
     {
@@ -53,11 +55,7 @@ TEST(vector_test, assign) {
         v3.assign({ 10, 20, 30, 40, 50 });
 
         int array[] = { 10, 20, 30, 40, 50 };
-        int index = 0;
-        for (auto& v : v3) {
-            EXPECT_EQ(array[index], v);
-            ++index;
-        }
+        EXPECT_VECTOR_EQ(array, v3);
     }
 }
 
@@ -207,7 +205,7 @@ TEST(vector_test, traverse) {
     }
 
     // C++11
-	index = 0;
+    index = 0;
     for (auto& elem : v) {
         EXPECT_EQ(array[index], elem);
         ++index;

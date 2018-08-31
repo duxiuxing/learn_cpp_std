@@ -5,7 +5,7 @@ using namespace std;
 
 #define EXPECT_VECTOR_EQ(expect_array, actual_vector) \
     { \
-        ASSERT_EQ(sizeof(expect_array) / sizeof(expect_array[0]), actual_vector.size()); \
+        ASSERT_EQ(_countof(expect_array), actual_vector.size()); \
         for (unsigned int index = 0; index < actual_vector.size(); ++index) { \
             EXPECT_EQ(expect_array[index], actual_vector[index]) << "index = " << index; \
         } \
@@ -214,10 +214,123 @@ TEST(vector_test, traverse) {
 #endif
 }
 
-// 3. 在任意位置插入vector元素
-// 4. 利用erase函数删除vector元素
-// 5. 反向遍历vector的元素
-// 6. 两个vector容器元素的交换
+/*
+    TestedMethod: vector::insert()
+    Description: Inserts an element or a number of elements or a range of elements into the vector at a specified position.
+*/
+TEST(vector_test, insert_an_element) {
+    vector<int> v;
+
+    v.push_back(6);
+    v.push_back(7);
+    v.push_back(8);
+    v.push_back(10);
+
+    {
+        int array[] = { 6, 7, 8, 10 };
+        EXPECT_VECTOR_EQ(array, v);
+    }
+
+    // insert的位置在中间
+    {
+        v.insert(v.begin() + 3, 9);
+        EXPECT_EQ(9, v[3]);
+
+        int array[] = { 6, 7, 8, 9, 10 };
+        EXPECT_VECTOR_EQ(array, v);
+    }
+
+    // insert的位置在开头
+    {
+        v.insert(v.begin(), 5);
+        EXPECT_EQ(5, v[0]);
+
+        int array[] = { 5, 6, 7, 8, 9, 10 };
+        EXPECT_VECTOR_EQ(array, v);
+    }
+
+    // insert的位置在末尾
+    {
+        v.insert(v.end(), 11);
+        EXPECT_EQ(11, v[v.size() - 1]);
+
+        int array[] = { 5, 6, 7, 8, 9, 10, 11 };
+        EXPECT_VECTOR_EQ(array, v);
+    }
+}
+
+/*
+    TestedMethod: vector::insert()
+    Description: Inserts an element or a number of elements or a range of elements into the vector at a specified position.
+*/
+TEST(vector_test, insert_elements) {
+    vector<int> v;
+
+    v.push_back(10);
+    v.push_back(20);
+    v.push_back(30);
+
+    {
+        int array[] = { 10, 20, 30 };
+        EXPECT_VECTOR_EQ(array, v);
+    }
+
+    /*
+        TestedMethod: void vector::insert(const_iterator _Where, size_type count, const Type& val);
+        Description: insert多个数值相同的元素。
+    */
+    {
+        v.insert(v.begin() + 2, 4, 40);
+        EXPECT_EQ(40, v[2]);
+        EXPECT_EQ(40, v[3]);
+        EXPECT_EQ(40, v[4]);
+        EXPECT_EQ(40, v[5]);
+
+        int array[] = { 10, 20, 40, 40, 40, 40, 30 };
+        EXPECT_VECTOR_EQ(array, v);
+    }
+
+    /*
+        TestedMethod:
+            template <class InputIterator>
+            void vector::insert(const_iterator _Where, InputIterator first, InputIterator last);
+        Description: insert多个元素。
+    */
+    {
+        {
+            vector<int> vv;
+            vv.push_back(0);
+            vv.push_back(30);
+
+            vector<int>::size_type size_before_insert = vv.size();
+            vv.insert(vv.begin() + 1, v.begin(), v.begin() + 2);
+            EXPECT_EQ(size_before_insert + 2, vv.size());
+
+            int array[] = { 0, 10, 20, 30 };
+            EXPECT_VECTOR_EQ(array, vv);
+        }
+
+        {
+            vector<int>::size_type size_before_insert = v.size();
+            v.insert(v.begin() + 1, v.begin() + 2, v.begin() + 4);
+            EXPECT_EQ(size_before_insert + 2, v.size());
+
+            int array[] = { 10, 40, 40, 20, 40, 40, 40, 40, 30 };
+            EXPECT_VECTOR_EQ(array, v);
+        }
+    }
+
+    // initialize a vector of vectors by moving v
+    {
+        vector<vector<int> > vv;
+
+        vv.insert(vv.begin(), move(v));
+        EXPECT_EQ(1, vv.size());
+
+        int array[] = { 10, 40, 40, 20, 40, 40, 40, 40, 30 };
+        EXPECT_VECTOR_EQ(array, vv[0]);
+    }
+}
 
 /*
     TestedMethod: vector::()

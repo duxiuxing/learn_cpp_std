@@ -165,6 +165,7 @@
     <ClCompile Include="..\..\third_party\googletest\src\gtest_main.cc" />
     <ClCompile Include="..\stdafx.cpp" />
     <ClCompile Include="..\vector_test.cpp" />
+    <ClCompile Include="..\vector_test_erase.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

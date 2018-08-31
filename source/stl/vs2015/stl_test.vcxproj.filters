@@ -7,6 +7,9 @@
     <Filter Include="Generated Files">
       <UniqueIdentifier>{8be15130-e59d-4005-ace9-253970d919e6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Test\vector">
+      <UniqueIdentifier>{b1637f58-ce25-4a58-bcfb-fe800a3f736c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\stdafx.h">
@@ -24,7 +27,10 @@
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="..\vector_test.cpp">
-      <Filter>Test</Filter>
+      <Filter>Test\vector</Filter>
+    </ClCompile>
+    <ClCompile Include="..\vector_test_erase.cpp">
+      <Filter>Test\vector</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

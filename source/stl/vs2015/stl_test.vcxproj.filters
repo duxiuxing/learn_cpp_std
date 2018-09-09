@@ -32,5 +32,8 @@
     <ClCompile Include="..\gtest_main.cc">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\dllmain.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

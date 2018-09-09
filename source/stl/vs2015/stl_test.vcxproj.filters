@@ -23,14 +23,14 @@
     <ClCompile Include="..\stdafx.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\third_party\googletest\src\gtest_main.cc">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\vector_test.cpp">
       <Filter>Test\vector</Filter>
     </ClCompile>
     <ClCompile Include="..\vector_test_erase.cpp">
       <Filter>Test\vector</Filter>
+    </ClCompile>
+    <ClCompile Include="..\gtest_main.cc">
+      <Filter>Generated Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

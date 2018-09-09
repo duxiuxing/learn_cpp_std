@@ -9,38 +9,32 @@
 
 BuildLog.htm
 mt.dep
-Debug/*
-Release/*
-x64/Debug/*
-x64/Release/*
 
-!Debug/cutest.dll
-!Debug/cutest.lib
-!Debug/MfcTestRunnerApp.exe
+Debug(gtest)/*
+Release(gtest)/*
+x64/Debug(gtest)/*
+x64/Release(gtest)/*
 
-!Release/cutest.dll
-!Release/cutest.lib
-!Release/MfcTestRunnerApp.exe
+Debug(cutest)/*
+Release(cutest)/*
+x64/Debug(cutest)/*
+x64/Release(cutest)/*
 
-!x64/Debug/cutest.dll
-!x64/Debug/cutest.lib
-!x64/Debug/MfcTestRunnerApp.exe
+!*/cutest.dll
+!*/cutest.lib
+!*/MfcTestRunnerApp.exe
 
-!x64/Release/cutest.dll
-!x64/Release/cutest.lib
-!x64/Release/MfcTestRunnerApp.exe
+source/basic_types/*/Debug*
+source/basic_types/*/Release*
+source/basic_types/*/x64/Debug*
+source/basic_types/*/x64/Release*
 
-source/basic_types/*/Debug/*
-source/basic_types/*/Release/*
-source/basic_types/*/x64/Debug/*
-source/basic_types/*/x64/Release/*
+source/gtest_static/*/Debug*
+source/gtest_static/*/Release*
+source/gtest_static/*/x64/Debug*
+source/gtest_static/*/x64/Release*
 
-source/gtest_static/*/Debug/*
-source/gtest_static/*/Release/*
-source/gtest_static/*/x64/Debug/*
-source/gtest_static/*/x64/Release/*
-
-source/stl/vs2015/Debug/*
-source/stl/vs2015/Release/*
-source/stl/vs2015/x64/Debug/*
-source/stl/vs2015/x64/Release/*
+source/stl/*/Debug*
+source/stl/*/Release*
+source/stl/*/x64/Debug*
+source/stl/*/x64/Release*

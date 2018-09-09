@@ -29,7 +29,7 @@
     <ClCompile Include="..\float_test.cpp">
       <Filter>Test</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\third_party\googletest\src\gtest_main.cc">
+    <ClCompile Include="..\gtest_main.cc">
       <Filter>Generated Files</Filter>
     </ClCompile>
   </ItemGroup>

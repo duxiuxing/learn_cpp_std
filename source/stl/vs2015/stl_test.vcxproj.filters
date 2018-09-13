@@ -26,7 +26,7 @@
     <ClCompile Include="..\vector_test.cpp">
       <Filter>Test\vector</Filter>
     </ClCompile>
-    <ClCompile Include="..\vector_test_erase.cpp">
+    <ClCompile Include="..\vector_test_from_msdn.cpp">
       <Filter>Test\vector</Filter>
     </ClCompile>
     <ClCompile Include="..\gtest_main.cc">

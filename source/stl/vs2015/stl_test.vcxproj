@@ -308,7 +308,7 @@
     <ClCompile Include="..\gtest_main.cc" />
     <ClCompile Include="..\stdafx.cpp" />
     <ClCompile Include="..\vector_test.cpp" />
-    <ClCompile Include="..\vector_test_erase.cpp" />
+    <ClCompile Include="..\vector_test_from_msdn.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

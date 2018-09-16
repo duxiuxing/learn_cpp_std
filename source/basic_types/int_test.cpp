@@ -43,24 +43,24 @@ TEST(int_test, int8_to_string) {
     const int_type min_int = INT8_MIN;
     const int_type max_int = INT8_MAX;
 
-    const char expect_str[] = "-128 ~ 127";
+    const char expect_string[] = "-128 ~ 127";
 
     // 使用_itoa_s()
     {
         char buffer[BUFFER_MAX];
         _itoa_s(min_int, buffer, BUFFER_MAX, 10);
-        std::string actual_str = buffer;
-        actual_str.append(" ~ ");
+        std::string actual_string = buffer;
+        actual_string.append(" ~ ");
         _itoa_s(max_int, buffer, BUFFER_MAX, 10);
-        actual_str.append(buffer);
-        EXPECT_STREQ(expect_str, actual_str.c_str());
+        actual_string.append(buffer);
+        EXPECT_STREQ(expect_string, actual_string.c_str());
     }
 
     // 使用sprintf_s()
     {
-        char actual_str[BUFFER_MAX];
-        sprintf_s(actual_str, BUFFER_MAX, "%d ~ %d", min_int, max_int);
-        EXPECT_STREQ(expect_str, actual_str);
+        char actual_string[BUFFER_MAX];
+        sprintf_s(actual_string, BUFFER_MAX, "%d ~ %d", min_int, max_int);
+        EXPECT_STREQ(expect_string, actual_string);
     }
 
     // 使用std::stringstream时，如果不带显式类型转换会被当做char处理
@@ -68,7 +68,7 @@ TEST(int_test, int8_to_string) {
         std::stringstream ss;
         ss << min_int << " ~ " << max_int;
 
-        EXPECT_STRNE(expect_str, ss.str().c_str());
+        EXPECT_STRNE(expect_string, ss.str().c_str());
         EXPECT_STREQ("\x80 ~ \x7F", ss.str().c_str());
     }
 
@@ -76,22 +76,22 @@ TEST(int_test, int8_to_string) {
     {
         std::stringstream ss;
         ss << (int32_t)min_int << " ~ " << (int32_t)max_int;
-        EXPECT_STREQ(expect_str, ss.str().c_str());
+        EXPECT_STREQ(expect_string, ss.str().c_str());
     }
 
 #ifdef _STDINT
     // 使用std::to_string()
     {
 #if _MSC_VER <= 1600 // vs2010 or previous
-        std::string actual_str = std::to_string((int64_t)min_int);
-        actual_str.append(" ~ ");
-        actual_str.append(std::to_string((int64_t)max_int));
-        EXPECT_STREQ(expect_str, actual_str.c_str());
+        std::string actual_string = std::to_string((int64_t)min_int);
+        actual_string.append(" ~ ");
+        actual_string.append(std::to_string((int64_t)max_int));
+        EXPECT_STREQ(expect_string, actual_string.c_str());
 #else
-        std::string actual_str = std::to_string(min_int);
-        actual_str.append(" ~ ");
-        actual_str.append(std::to_string(max_int));
-        EXPECT_STREQ(expect_str, actual_str.c_str());
+        std::string actual_string = std::to_string(min_int);
+        actual_string.append(" ~ ");
+        actual_string.append(std::to_string(max_int));
+        EXPECT_STREQ(expect_string, actual_string.c_str());
 #endif
     }
 #endif // #ifdef _STDINT
@@ -107,46 +107,46 @@ TEST(int_test, int16_to_string) {
     const int_type min_int = INT16_MIN;
     const int_type max_int = INT16_MAX;
 
-    const char expect_str[] = "-32768 ~ 32767";
+    const char expect_string[] = "-32768 ~ 32767";
 
     // 使用_itoa_s()
     {
         char buffer[BUFFER_MAX];
         _itoa_s(min_int, buffer, BUFFER_MAX, 10);
-        std::string actual_str = buffer;
-        actual_str.append(" ~ ");
+        std::string actual_string = buffer;
+        actual_string.append(" ~ ");
         _itoa_s(max_int, buffer, BUFFER_MAX, 10);
-        actual_str.append(buffer);
-        EXPECT_STREQ(expect_str, actual_str.c_str());
+        actual_string.append(buffer);
+        EXPECT_STREQ(expect_string, actual_string.c_str());
     }
 
     // 使用sprintf_s()
     {
-        char actual_str[BUFFER_MAX];
-        sprintf_s(actual_str, BUFFER_MAX, "%d ~ %d", min_int, max_int);
-        EXPECT_STREQ(expect_str, actual_str);
+        char actual_string[BUFFER_MAX];
+        sprintf_s(actual_string, BUFFER_MAX, "%d ~ %d", min_int, max_int);
+        EXPECT_STREQ(expect_string, actual_string);
     }
 
     // 使用std::stringstream
     {
         std::stringstream ss;
         ss << min_int << " ~ " << max_int;
-        EXPECT_STREQ(expect_str, ss.str().c_str());
+        EXPECT_STREQ(expect_string, ss.str().c_str());
     }
 
 #ifdef _STDINT
     // 使用std::to_string()
     {
 #if _MSC_VER <= 1600 // vs2010 or previous
-        std::string actual_str = std::to_string((int64_t)min_int);
-        actual_str.append(" ~ ");
-        actual_str.append(std::to_string((int64_t)max_int));
-        EXPECT_STREQ(expect_str, actual_str.c_str());
+        std::string actual_string = std::to_string((int64_t)min_int);
+        actual_string.append(" ~ ");
+        actual_string.append(std::to_string((int64_t)max_int));
+        EXPECT_STREQ(expect_string, actual_string.c_str());
 #else
-        std::string actual_str = std::to_string(min_int);
-        actual_str.append(" ~ ");
-        actual_str.append(std::to_string(max_int));
-        EXPECT_STREQ(expect_str, actual_str.c_str());
+        std::string actual_string = std::to_string(min_int);
+        actual_string.append(" ~ ");
+        actual_string.append(std::to_string(max_int));
+        EXPECT_STREQ(expect_string, actual_string.c_str());
 #endif
     }
 #endif // #ifdef _STDINT
@@ -162,46 +162,46 @@ TEST(int_test, int32_to_string) {
     const int_type min_int = INT32_MIN;
     const int_type max_int = INT32_MAX;
 
-    const char expect_str[] = "-2147483648 ~ 2147483647";
+    const char expect_string[] = "-2147483648 ~ 2147483647";
 
     // 使用_itoa_s()
     {
         char buffer[BUFFER_MAX];
         _itoa_s(min_int, buffer, BUFFER_MAX, 10);
-        std::string actual_str = buffer;
-        actual_str.append(" ~ ");
+        std::string actual_string = buffer;
+        actual_string.append(" ~ ");
         _itoa_s(max_int, buffer, BUFFER_MAX, 10);
-        actual_str.append(buffer);
-        EXPECT_STREQ(expect_str, actual_str.c_str());
+        actual_string.append(buffer);
+        EXPECT_STREQ(expect_string, actual_string.c_str());
     }
 
     // 使用sprintf_s()
     {
-        char actual_str[BUFFER_MAX];
-        sprintf_s(actual_str, BUFFER_MAX, "%d ~ %d", min_int, max_int);
-        EXPECT_STREQ(expect_str, actual_str);
+        char actual_string[BUFFER_MAX];
+        sprintf_s(actual_string, BUFFER_MAX, "%d ~ %d", min_int, max_int);
+        EXPECT_STREQ(expect_string, actual_string);
     }
 
     // 使用std::stringstream
     {
         std::stringstream ss;
         ss << min_int << " ~ " << max_int;
-        EXPECT_STREQ(expect_str, ss.str().c_str());
+        EXPECT_STREQ(expect_string, ss.str().c_str());
     }
 
 #ifdef _STDINT
     // 使用std::to_string()
     {
 #if _MSC_VER <= 1600 // vs2010 or previous
-        std::string actual_str = std::to_string((int64_t)min_int);
-        actual_str.append(" ~ ");
-        actual_str.append(std::to_string((int64_t)max_int));
-        EXPECT_STREQ(expect_str, actual_str.c_str());
+        std::string actual_string = std::to_string((int64_t)min_int);
+        actual_string.append(" ~ ");
+        actual_string.append(std::to_string((int64_t)max_int));
+        EXPECT_STREQ(expect_string, actual_string.c_str());
 #else
-        std::string actual_str = std::to_string(min_int);
-        actual_str.append(" ~ ");
-        actual_str.append(std::to_string(max_int));
-        EXPECT_STREQ(expect_str, actual_str.c_str());
+        std::string actual_string = std::to_string(min_int);
+        actual_string.append(" ~ ");
+        actual_string.append(std::to_string(max_int));
+        EXPECT_STREQ(expect_string, actual_string.c_str());
 #endif
     }
 #endif // #ifdef _STDINT
@@ -278,40 +278,40 @@ TEST(int_test, int64_to_string) {
     const int_type min_int = INT64_MIN;
     const int_type max_int = INT64_MAX;
 
-    const char expect_str[] = "-9223372036854775808 ~ 9223372036854775807";
+    const char expect_string[] = "-9223372036854775808 ~ 9223372036854775807";
 
     // 使用_i64toa_s()
     {
         char buffer[BUFFER_MAX];
         _i64toa_s(min_int, buffer, BUFFER_MAX, 10);
-        std::string actual_str = buffer;
-        actual_str.append(" ~ ");
+        std::string actual_string = buffer;
+        actual_string.append(" ~ ");
         _i64toa_s(max_int, buffer, BUFFER_MAX, 10);
-        actual_str.append(buffer);
-        EXPECT_STREQ(expect_str, actual_str.c_str());
+        actual_string.append(buffer);
+        EXPECT_STREQ(expect_string, actual_string.c_str());
     }
 
     // 使用sprintf_s()
     {
-        char actual_str[BUFFER_MAX];
-        sprintf_s(actual_str, BUFFER_MAX, "%lld ~ %lld", min_int, max_int);
-        EXPECT_STREQ(expect_str, actual_str);
+        char actual_string[BUFFER_MAX];
+        sprintf_s(actual_string, BUFFER_MAX, "%lld ~ %lld", min_int, max_int);
+        EXPECT_STREQ(expect_string, actual_string);
     }
 
     // 使用std::stringstream
     {
         std::stringstream ss;
         ss << min_int << " ~ " << max_int;
-        EXPECT_STREQ(expect_str, ss.str().c_str());
+        EXPECT_STREQ(expect_string, ss.str().c_str());
     }
 
 #ifdef _STDINT
     // 使用std::to_string()
     {
-        std::string actual_str = std::to_string(min_int);
-        actual_str.append(" ~ ");
-        actual_str.append(std::to_string(max_int));
-        EXPECT_STREQ(expect_str, actual_str.c_str());
+        std::string actual_string = std::to_string(min_int);
+        actual_string.append(" ~ ");
+        actual_string.append(std::to_string(max_int));
+        EXPECT_STREQ(expect_string, actual_string.c_str());
     }
 #endif // #ifdef _STDINT
 }
@@ -383,31 +383,31 @@ TEST(int_test, uint8_to_string) {
     const int_type min_int = 0;
     const int_type max_int = UINT8_MAX;
 
-    const char expect_str[] = "0 ~ 255";
+    const char expect_string[] = "0 ~ 255";
 
     // 使用_itoa_s()
     {
         char buffer[BUFFER_MAX];
         _itoa_s(min_int, buffer, BUFFER_MAX, 10);
-        std::string actual_str = buffer;
-        actual_str.append(" ~ ");
+        std::string actual_string = buffer;
+        actual_string.append(" ~ ");
         _itoa_s(max_int, buffer, BUFFER_MAX, 10);
-        actual_str.append(buffer);
-        EXPECT_STREQ(expect_str, actual_str.c_str());
+        actual_string.append(buffer);
+        EXPECT_STREQ(expect_string, actual_string.c_str());
     }
 
     // 使用sprintf_s()
     {
-        char actual_str[BUFFER_MAX];
-        sprintf_s(actual_str, BUFFER_MAX, "%u ~ %u", min_int, max_int);
-        EXPECT_STREQ(expect_str, actual_str);
+        char actual_string[BUFFER_MAX];
+        sprintf_s(actual_string, BUFFER_MAX, "%u ~ %u", min_int, max_int);
+        EXPECT_STREQ(expect_string, actual_string);
     }
 
     // 使用std::stringstream without explicit type conversions
     {
         std::stringstream ss;
         ss << min_int << " ~ " << max_int;
-        EXPECT_STRNE(expect_str, ss.str().c_str());
+        EXPECT_STRNE(expect_string, ss.str().c_str());
 
         EXPECT_STREQ("\x00 ~ \xFF", ss.str().c_str());
     }
@@ -416,22 +416,22 @@ TEST(int_test, uint8_to_string) {
     {
         std::stringstream ss;
         ss << (uint32_t)min_int << " ~ " << (uint32_t)max_int;
-        EXPECT_STREQ(expect_str, ss.str().c_str());
+        EXPECT_STREQ(expect_string, ss.str().c_str());
     }
 
 #ifdef _STDINT
     // 使用std::to_string()
     {
 #if _MSC_VER <= 1600 // vs2010 or previous
-        std::string actual_str = std::to_string((uint64_t)min_int);
-        actual_str.append(" ~ ");
-        actual_str.append(std::to_string((uint64_t)max_int));
-        EXPECT_STREQ(expect_str, actual_str.c_str());
+        std::string actual_string = std::to_string((uint64_t)min_int);
+        actual_string.append(" ~ ");
+        actual_string.append(std::to_string((uint64_t)max_int));
+        EXPECT_STREQ(expect_string, actual_string.c_str());
 #else
-        std::string actual_str = std::to_string(min_int);
-        actual_str.append(" ~ ");
-        actual_str.append(std::to_string(max_int));
-        EXPECT_STREQ(expect_str, actual_str.c_str());
+        std::string actual_string = std::to_string(min_int);
+        actual_string.append(" ~ ");
+        actual_string.append(std::to_string(max_int));
+        EXPECT_STREQ(expect_string, actual_string.c_str());
 #endif
     }
 #endif // #ifdef _STDINT
@@ -447,46 +447,46 @@ TEST(int_test, uint16_to_string) {
     const int_type min_int = 0;
     const int_type max_int = UINT16_MAX;
 
-    const char expect_str[] = "0 ~ 65535";
+    const char expect_string[] = "0 ~ 65535";
 
     // 使用_itoa_s()
     {
         char buffer[BUFFER_MAX];
         _itoa_s(min_int, buffer, BUFFER_MAX, 10);
-        std::string actual_str = buffer;
-        actual_str.append(" ~ ");
+        std::string actual_string = buffer;
+        actual_string.append(" ~ ");
         _itoa_s(max_int, buffer, BUFFER_MAX, 10);
-        actual_str.append(buffer);
-        EXPECT_STREQ(expect_str, actual_str.c_str());
+        actual_string.append(buffer);
+        EXPECT_STREQ(expect_string, actual_string.c_str());
     }
 
     // 使用sprintf_s()
     {
-        char actual_str[BUFFER_MAX];
-        sprintf_s(actual_str, BUFFER_MAX, "%u ~ %u", min_int, max_int);
-        EXPECT_STREQ(expect_str, actual_str);
+        char actual_string[BUFFER_MAX];
+        sprintf_s(actual_string, BUFFER_MAX, "%u ~ %u", min_int, max_int);
+        EXPECT_STREQ(expect_string, actual_string);
     }
 
     // 使用std::stringstream
     {
         std::stringstream ss;
         ss << min_int << " ~ " << max_int;
-        EXPECT_STREQ(expect_str, ss.str().c_str());
+        EXPECT_STREQ(expect_string, ss.str().c_str());
     }
 
 #ifdef _STDINT
     // 使用std::to_string()
     {
 #if _MSC_VER <= 1600 // vs2010 or previous
-        std::string actual_str = std::to_string((uint64_t)min_int);
-        actual_str.append(" ~ ");
-        actual_str.append(std::to_string((uint64_t)max_int));
-        EXPECT_STREQ(expect_str, actual_str.c_str());
+        std::string actual_string = std::to_string((uint64_t)min_int);
+        actual_string.append(" ~ ");
+        actual_string.append(std::to_string((uint64_t)max_int));
+        EXPECT_STREQ(expect_string, actual_string.c_str());
 #else
-        std::string actual_str = std::to_string(min_int);
-        actual_str.append(" ~ ");
-        actual_str.append(std::to_string(max_int));
-        EXPECT_STREQ(expect_str, actual_str.c_str());
+        std::string actual_string = std::to_string(min_int);
+        actual_string.append(" ~ ");
+        actual_string.append(std::to_string(max_int));
+        EXPECT_STREQ(expect_string, actual_string.c_str());
 #endif
     }
 #endif // #ifdef _STDINT
@@ -502,54 +502,54 @@ TEST(int_test, uint32_to_string) {
     const int_type min_int = 0;
     const int_type max_int = UINT32_MAX;
 
-    const char expect_str[] = "0 ~ 4294967295";
+    const char expect_string[] = "0 ~ 4294967295";
 
     // 不能使用_itoa_s()了，会越界，而要用_ui64toa_s
     {
         char buffer[BUFFER_MAX];
         _itoa_s(min_int, buffer, BUFFER_MAX, 10);
-        std::string actual_str = buffer;
-        actual_str.append(" ~ ");
+        std::string actual_string = buffer;
+        actual_string.append(" ~ ");
         _itoa_s(max_int, buffer, BUFFER_MAX, 10);
-        actual_str.append(buffer);
-        EXPECT_STRNE(expect_str, actual_str.c_str());
-        EXPECT_STREQ("0 ~ -1", actual_str.c_str());
+        actual_string.append(buffer);
+        EXPECT_STRNE(expect_string, actual_string.c_str());
+        EXPECT_STREQ("0 ~ -1", actual_string.c_str());
 
         _ui64toa_s(min_int, buffer, BUFFER_MAX, 10);
-        actual_str = buffer;
-        actual_str.append(" ~ ");
+        actual_string = buffer;
+        actual_string.append(" ~ ");
         _ui64toa_s(max_int, buffer, BUFFER_MAX, 10);
-        actual_str.append(buffer);
-        EXPECT_STREQ(expect_str, actual_str.c_str());
+        actual_string.append(buffer);
+        EXPECT_STREQ(expect_string, actual_string.c_str());
     }
 
     // 使用sprintf_s()
     {
-        char actual_str[BUFFER_MAX];
-        sprintf_s(actual_str, BUFFER_MAX, "%u ~ %u", min_int, max_int);
-        EXPECT_STREQ(expect_str, actual_str);
+        char actual_string[BUFFER_MAX];
+        sprintf_s(actual_string, BUFFER_MAX, "%u ~ %u", min_int, max_int);
+        EXPECT_STREQ(expect_string, actual_string);
     }
 
     // 使用std::stringstream
     {
         std::stringstream ss;
         ss << min_int << " ~ " << max_int;
-        EXPECT_STREQ(expect_str, ss.str().c_str());
+        EXPECT_STREQ(expect_string, ss.str().c_str());
     }
 
 #ifdef _STDINT
     // 使用std::to_string()
     {
 #if _MSC_VER <= 1600 // vs2010 or previous
-        std::string actual_str = std::to_string((uint64_t)min_int);
-        actual_str.append(" ~ ");
-        actual_str.append(std::to_string((uint64_t)max_int));
-        EXPECT_STREQ(expect_str, actual_str.c_str());
+        std::string actual_string = std::to_string((uint64_t)min_int);
+        actual_string.append(" ~ ");
+        actual_string.append(std::to_string((uint64_t)max_int));
+        EXPECT_STREQ(expect_string, actual_string.c_str());
 #else
-        std::string actual_str = std::to_string(min_int);
-        actual_str.append(" ~ ");
-        actual_str.append(std::to_string(max_int));
-        EXPECT_STREQ(expect_str, actual_str.c_str());
+        std::string actual_string = std::to_string(min_int);
+        actual_string.append(" ~ ");
+        actual_string.append(std::to_string(max_int));
+        EXPECT_STREQ(expect_string, actual_string.c_str());
 #endif
     }
 #endif // #ifdef _STDINT
@@ -622,40 +622,40 @@ TEST(int_test, uint64_to_string) {
     const int_type min_int = 0;
     const int_type max_int = UINT64_MAX;
 
-    const char expect_str[] = "0 ~ 18446744073709551615";
+    const char expect_string[] = "0 ~ 18446744073709551615";
 
     // 使用_ui64toa_s()
     {
         char buffer[BUFFER_MAX];
         _ui64toa_s(min_int, buffer, BUFFER_MAX, 10);
-        std::string actual_str = buffer;
-        actual_str.append(" ~ ");
+        std::string actual_string = buffer;
+        actual_string.append(" ~ ");
         _ui64toa_s(max_int, buffer, BUFFER_MAX, 10);
-        actual_str.append(buffer);
-        EXPECT_STREQ(expect_str, actual_str.c_str());
+        actual_string.append(buffer);
+        EXPECT_STREQ(expect_string, actual_string.c_str());
     }
 
     // 使用sprintf_s()
     {
-        char actual_str[BUFFER_MAX];
-        sprintf_s(actual_str, BUFFER_MAX, "%llu ~ %llu", min_int, max_int);
-        EXPECT_STREQ(expect_str, actual_str);
+        char actual_string[BUFFER_MAX];
+        sprintf_s(actual_string, BUFFER_MAX, "%llu ~ %llu", min_int, max_int);
+        EXPECT_STREQ(expect_string, actual_string);
     }
 
     // 使用std::stringstream
     {
         std::stringstream ss;
         ss << min_int << " ~ " << max_int;
-        EXPECT_STREQ(expect_str, ss.str().c_str());
+        EXPECT_STREQ(expect_string, ss.str().c_str());
     }
 
 #ifdef _STDINT
     // 使用std::to_string()
     {
-        std::string actual_str = std::to_string(min_int);
-        actual_str.append(" ~ ");
-        actual_str.append(std::to_string(max_int));
-        EXPECT_STREQ(expect_str, actual_str.c_str());
+        std::string actual_string = std::to_string(min_int);
+        actual_string.append(" ~ ");
+        actual_string.append(std::to_string(max_int));
+        EXPECT_STREQ(expect_string, actual_string.c_str());
     }
 #endif // #ifdef _STDINT
 }

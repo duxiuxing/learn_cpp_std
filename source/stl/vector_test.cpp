@@ -63,7 +63,7 @@ TEST(vector_test, traverse) {
     v.push_back(26);
     v.push_back(39);
 
-    int array[] = { 20, 26, 39 };
+    int array[] = {20, 26, 39 };
     int index = 0;
 
     // 用数组的方式遍历

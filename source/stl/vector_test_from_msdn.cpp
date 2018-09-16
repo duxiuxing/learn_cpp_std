@@ -25,7 +25,7 @@ TEST(vector_test, assign) {
         v1.push_back(40);
         v1.push_back(50);
 
-        int array[] = { 10, 20, 30, 40, 50 };
+        int array[] = {10, 20, 30, 40, 50};
         EXPECT_VECTOR_EQ(array, v1);
     }
 
@@ -35,7 +35,7 @@ TEST(vector_test, assign) {
         vector<int> v2;
         v2.assign(v1.begin(), v1.end());
 
-        int array[] = { 10, 20, 30, 40, 50 };
+        int array[] = {10, 20, 30, 40, 50};
         EXPECT_VECTOR_EQ(array, v2);
     }
 
@@ -44,16 +44,16 @@ TEST(vector_test, assign) {
         // void assign(size_type Count, const Type& Val);
         v3.assign(7, 4);
 
-        int array[] = { 4, 4, 4, 4, 4, 4, 4 };
+        int array[] = {4, 4, 4, 4, 4, 4, 4};
         EXPECT_VECTOR_EQ(array, v3);
     }
 
 #if GTEST_LANG_CXX11
     {
         // void assign(initializer_list<Type> IList);
-        v3.assign({ 10, 20, 30, 40, 50 });
+        v3.assign({10, 20, 30, 40, 50});
 
-        int array[] = { 10, 20, 30, 40, 50 };
+        int array[] = {10, 20, 30, 40, 50};
         EXPECT_VECTOR_EQ(array, v3);
     }
 #endif
@@ -104,7 +104,7 @@ TEST(vector_test, begin) {
     c1.push_back(2);
 
     {
-        int array[] = { 1, 2 };
+        int array[] = {1, 2};
         int index = 0;
 
         vector<int>::iterator c1_Iter = c1.begin();
@@ -115,7 +115,7 @@ TEST(vector_test, begin) {
     }
 
     {
-        int array[] = { 20, 2 };
+        int array[] = {20, 2};
         int index = 0;
 
         vector<int>::iterator c1_Iter = c1.begin();
@@ -180,7 +180,7 @@ TEST(vector_test, erase) {
         v.push_back(40);
         v.push_back(50);
 
-        int array[] = { 10, 20, 30, 40, 50 };
+        int array[] = {10, 20, 30, 40, 50};
         EXPECT_VECTOR_EQ(array, v);
     }
 
@@ -191,7 +191,7 @@ TEST(vector_test, erase) {
     {
         v.erase(v.begin());
 
-        int array[] = { 20, 30, 40, 50 };
+        int array[] = {20, 30, 40, 50};
         EXPECT_VECTOR_EQ(array, v);
     }
 
@@ -204,7 +204,7 @@ TEST(vector_test, erase) {
         v.erase(v.begin() + 1, v.begin() + 3);
         EXPECT_EQ(size_before_erase - 2, v.size());
 
-        int array[] = { 20, 50 };
+        int array[] = {20, 50};
         EXPECT_VECTOR_EQ(array, v);
     }
 }
@@ -222,7 +222,7 @@ TEST(vector_test, insert_an_element) {
     v.push_back(10);
 
     {
-        int array[] = { 6, 7, 8, 10 };
+        int array[] = {6, 7, 8, 10};
         EXPECT_VECTOR_EQ(array, v);
     }
 
@@ -231,7 +231,7 @@ TEST(vector_test, insert_an_element) {
         v.insert(v.begin() + 3, 9);
         EXPECT_EQ(9, v[3]);
 
-        int array[] = { 6, 7, 8, 9, 10 };
+        int array[] = {6, 7, 8, 9, 10};
         EXPECT_VECTOR_EQ(array, v);
     }
 
@@ -240,7 +240,7 @@ TEST(vector_test, insert_an_element) {
         v.insert(v.begin(), 5);
         EXPECT_EQ(5, v[0]);
 
-        int array[] = { 5, 6, 7, 8, 9, 10 };
+        int array[] = {5, 6, 7, 8, 9, 10};
         EXPECT_VECTOR_EQ(array, v);
     }
 
@@ -249,7 +249,7 @@ TEST(vector_test, insert_an_element) {
         v.insert(v.end(), 11);
         EXPECT_EQ(11, v[v.size() - 1]);
 
-        int array[] = { 5, 6, 7, 8, 9, 10, 11 };
+        int array[] = {5, 6, 7, 8, 9, 10, 11};
         EXPECT_VECTOR_EQ(array, v);
     }
 }
@@ -266,7 +266,7 @@ TEST(vector_test, insert_elements) {
     v.push_back(30);
 
     {
-        int array[] = { 10, 20, 30 };
+        int array[] = {10, 20, 30};
         EXPECT_VECTOR_EQ(array, v);
     }
 
@@ -281,7 +281,7 @@ TEST(vector_test, insert_elements) {
         EXPECT_EQ(40, v[4]);
         EXPECT_EQ(40, v[5]);
 
-        int array[] = { 10, 20, 40, 40, 40, 40, 30 };
+        int array[] = {10, 20, 40, 40, 40, 40, 30};
         EXPECT_VECTOR_EQ(array, v);
     }
 
@@ -301,7 +301,7 @@ TEST(vector_test, insert_elements) {
             vv.insert(vv.begin() + 1, v.begin(), v.begin() + 2);
             EXPECT_EQ(size_before_insert + 2, vv.size());
 
-            int array[] = { 0, 10, 20, 30 };
+            int array[] = {0, 10, 20, 30};
             EXPECT_VECTOR_EQ(array, vv);
         }
 
@@ -310,7 +310,7 @@ TEST(vector_test, insert_elements) {
             v.insert(v.begin() + 1, v.begin() + 2, v.begin() + 4);
             EXPECT_EQ(size_before_insert + 2, v.size());
 
-            int array[] = { 10, 40, 40, 20, 40, 40, 40, 40, 30 };
+            int array[] = {10, 40, 40, 20, 40, 40, 40, 40, 30};
             EXPECT_VECTOR_EQ(array, v);
         }
     }
@@ -322,7 +322,7 @@ TEST(vector_test, insert_elements) {
         vv.insert(vv.begin(), move(v));
         EXPECT_EQ(1, vv.size());
 
-        int array[] = { 10, 40, 40, 20, 40, 40, 40, 40, 30 };
+        int array[] = {10, 40, 40, 20, 40, 40, 40, 40, 30};
         EXPECT_VECTOR_EQ(array, vv[0]);
     }
 }

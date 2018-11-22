@@ -10,6 +10,9 @@
     <Filter Include="Test\vector">
       <UniqueIdentifier>{b1637f58-ce25-4a58-bcfb-fe800a3f736c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Test\vector\Command-Line Arguments Parser">
+      <UniqueIdentifier>{7ca95a38-0f70-4bcf-b726-b503e261b8e4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\stdafx.h">
@@ -17,6 +20,12 @@
     </ClInclude>
     <ClInclude Include="..\targetver.h">
       <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\arguments_parser.h">
+      <Filter>Test\vector\Command-Line Arguments Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\argument.h">
+      <Filter>Test\vector\Command-Line Arguments Parser</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -34,6 +43,15 @@
     </ClCompile>
     <ClCompile Include="..\dllmain.cpp">
       <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\argument.cpp">
+      <Filter>Test\vector\Command-Line Arguments Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\arguments_parser.cpp">
+      <Filter>Test\vector\Command-Line Arguments Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\arguments_parser_test.cpp">
+      <Filter>Test\vector\Command-Line Arguments Parser</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

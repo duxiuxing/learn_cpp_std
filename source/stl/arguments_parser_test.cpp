@@ -4,16 +4,25 @@
 
 TEST(ArgumentsParserTest, ParseNameOnly)
 {
-    char* arguments[] = { "Ping.exe", "-t", "192.168.0.1" };
-    ArgumentsParser parser(3, arguments);
+    {
+        char* argv[] = { "Ping.exe", "-t" };
+        ArgumentsParser parser(sizeof(argv) / sizeof(argv[0]), argv);
 
-    EXPECT_TRUE(parser.Has("-t"));
+        EXPECT_TRUE(parser.Has("-t"));
+    }
+
+    {
+        wchar_t* wargv[] = { L"Ping.exe", L"-t" };
+        ArgumentsParserW parser(sizeof(wargv) / sizeof(wargv[0]), wargv);
+
+        EXPECT_TRUE(parser.Has(L"-t"));
+    }
 }
 
 TEST(ArgumentsParserTest, ParseNameAndValue)
 {
-    char* arguments[] = { "Login.exe", "-user_name", "administrator", "-password", "123456" };
-    ArgumentsParser parser(5, arguments);
+    char* argv[] = { "Login.exe", "-user_name", "administrator", "-password", "123456" };
+    ArgumentsParser parser(sizeof(argv) / sizeof(argv[0]), argv);
 
     std::string userName;
     if (parser.Has("-user_name"))
@@ -40,8 +49,8 @@ TEST(ArgumentsParserTest, ParseNameAndValue)
 
 TEST(ArgumentsParserTest, ParseNameAndValues)
 {
-    char* arguments[] = { "FileManager.exe", "-copy", "src.txt", "dest.txt" };
-    ArgumentsParser parser(4, arguments);
+    char* argv[] = { "FileManager.exe", "-copy", "src.txt", "dest.txt" };
+    ArgumentsParser parser(sizeof(argv) / sizeof(argv[0]), argv);
 
     std::string srcFile, destFile;
     if (parser.Has("-copy"))

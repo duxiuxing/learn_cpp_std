@@ -44,12 +44,6 @@
     <ClCompile Include="..\dllmain.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\argument.cpp">
-      <Filter>Test\vector\Command-Line Arguments Parser</Filter>
-    </ClCompile>
-    <ClCompile Include="..\arguments_parser.cpp">
-      <Filter>Test\vector\Command-Line Arguments Parser</Filter>
-    </ClCompile>
     <ClCompile Include="..\arguments_parser_test.cpp">
       <Filter>Test\vector\Command-Line Arguments Parser</Filter>
     </ClCompile>

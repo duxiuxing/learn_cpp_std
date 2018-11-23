@@ -306,8 +306,6 @@
     <ClInclude Include="..\targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\argument.cpp" />
-    <ClCompile Include="..\arguments_parser.cpp" />
     <ClCompile Include="..\arguments_parser_test.cpp" />
     <ClCompile Include="..\dllmain.cpp" />
     <ClCompile Include="..\gtest_main.cc" />

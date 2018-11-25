@@ -28,11 +28,11 @@ public:
 
     ArgumentType* Get(const CharType* text)
     {
-        for (auto it = m_argList.begin(); it != m_argList.end(); ++it)
+        for (auto& arg : m_argList)
         {
-            if ((*it).IsEqualTo(text))
+            if (arg.IsEqualTo(text))
             {
-                return &(*it);
+                return &arg;
             }
         }
 
